@@ -3,11 +3,14 @@ import requests
 # endpoint = "https://httpbin.org/status/200/"
 # endpoint = "https://httpbin.org/anything"
 endpoint = "http://localhost:8000/api/" # "http://127.0.0.1:8000/"
+# endpoint = "http://localhost:8000/api/?this_arg=this_value" -> ?abc=123"
 # python py_client/basic.py sadece 8000 portunda çalışıyor.
 
 # get_response = requests.get(endpoint, data={"query":
-get_response = requests.get(endpoint, params={"abc": 123}, json={"query":
-    "Hello World"})
+# # get_response = requests.get(endpoint, params={"abc": 123}, json={"query":
+#     "Hello World"})
+get_response = requests.get(endpoint, params={"product_id": 123}) # HTTP Request
+
 # print(get_response) # print source code
 # print(get_response.text) # raw text response
 # print(get_response.status_code)
