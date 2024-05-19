@@ -13,6 +13,5 @@ def api_home(request, *args, **kwargs):
 
         # print(data)
         # data = dict(data)
-
     #     json_data_str = json.dumps(data) # "dump string" (stringe dök)
     # return HttpResponse(json_data_str, headers={"content-type": "application/json"})
