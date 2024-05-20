@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 # from django.http import Http404
 from django.shortcuts import get_object_or_404
+from .permissions import IsStaffEditorPermission
 
 from .models import Product
 from .serializers import ProductSerializer
@@ -13,8 +14,9 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     authentication_classes = [authentication.SessionAuthentication]
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    permission_classes = [permissions.DjangoModelPermissions] # Changed RestFramework permission
-
+    # permission_classes = [permissions.DjangoModelPermissions] # Changed RestFramework permission
+    permission_classes = [IsStaffEditorPermission]
+    
     def perform_create(self, serializer):
         # serializer.save(user=self.request.user)
         # print(serializer.validated_data)
