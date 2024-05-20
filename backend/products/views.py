@@ -41,24 +41,26 @@ product_list_create_view = ProductListCreateAPIView.as_view() # urls.py değişt
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
     # lookup_field = 'pk' ??
 
 product_detail_view = ProductDetailAPIView.as_view()
 
-class ProductListAPIView(generics.ListAPIView):
-    '''
-    Not gonna use this method
-    '''
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+# class ProductListAPIView(generics.ListAPIView):
+#     '''
+#     Not gonna use this method
+#     '''
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
 
-product_list_view = ProductListAPIView.as_view()
+# product_list_view = ProductListAPIView.as_view()
 
 # Update View
 class ProductUpdateAPIView(generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_field = 'pk'
+    permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
     # permission_classes = [permissions.DjangoModelPermissions]
 
     def perform_update(self, serializer):
@@ -74,6 +76,7 @@ class ProductDestroyAPIView(generics.DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_field = 'pk'
+    permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
 
     def perform_destroy(self, instance):
         # instance 
