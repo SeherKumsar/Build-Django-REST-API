@@ -1,27 +1,28 @@
 from django.forms.models import model_to_dict
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import JsonResponse
 
 from products.models import Product
 from products.serializers import ProductSerializer
 
-@api_view(["GET"]) 
+@api_view(["POST"]) 
 # @api_view dekoratörü, gelen isteği bir Django HttpRequest nesnesinden bir DRF Request nesnesine dönüştürür.
 def api_home(request, *args, **kwargs):
     """
     DRF API View
     """
-    # if request.method != "POST":
-    #     return Response({"detail": "GET not allowed"}, status=405)
-    # model_data = Product.objects.all().order_by("?").first()
-    # data = {}
-    # if model_data:
-    #     data = model_to_dict(model_data, fields=['id', 'title', 'price', 'sale_price'])
-    # return Response(data)
+    # data = request.POST
+    # return JsonResponse(data)
 
-    instance = Product.objects.all().order_by("?").first()
-    data = {}
-    if instance:
-        # data = model_to_dict(instance, fields=['id', 'title', 'price', 'sale_price'])
-        data = ProductSerializer(instance).data
-    return Response(data)
+    serializer = ProductSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        # instance = serializer.save()
+        # instance = serializer.save(commit=False)
+        # instance = form.save()
+        # print(serializer.data)
+        # print(instance)
+        print(serializer.data)
+        data = serializer.data
+        return Response(data)
+    return Response({"invalid": "not good data"}, status=400)
