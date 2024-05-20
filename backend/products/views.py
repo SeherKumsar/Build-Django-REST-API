@@ -15,7 +15,8 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
     authentication_classes = [authentication.SessionAuthentication]
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     # permission_classes = [permissions.DjangoModelPermissions] # Changed RestFramework permission
-    permission_classes = [IsStaffEditorPermission]
+    # permission_classes = [IsStaffEditorPermission]
+    permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
     
     def perform_create(self, serializer):
         # serializer.save(user=self.request.user)

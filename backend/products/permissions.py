@@ -12,10 +12,12 @@ class IsStaffEditorPermission(permissions.DjangoModelPermissions):
         'DELETE': ['%(app_label)s.delete_%(model_name)s'],
     }
 
-    def has_permission(self, request, view):
-        if not request.user.is_staff:
-            return False
-        return super().has_permission(request, view)
+    # def has_permission(self, request, view):
+        # if not request.username == "seher":
+        #     return False
+    #     if not request.user.is_staff:
+    #         return False
+    #     return super().has_permission(request, view)
 
     # def has_permission(self, request, view):
     #     user = request.user
