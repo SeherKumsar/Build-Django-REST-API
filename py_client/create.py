@@ -1,7 +1,9 @@
 import requests
 
 endpoint = "http://localhost:8000/api/products/" 
-
+# http://localhost:8000/admin/
+# session -> post data
+# selenium
 data = {
     "title": "This field is done",
     "price": 32.99
