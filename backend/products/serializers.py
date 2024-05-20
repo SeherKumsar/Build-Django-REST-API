@@ -21,6 +21,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'sale_price',
             'my_discount',
         ]
+        
     def get_url(self, obj):
         # return f"/api/v2/products/{obj.pk}/"
         request = self.context.get('request') # self.request
