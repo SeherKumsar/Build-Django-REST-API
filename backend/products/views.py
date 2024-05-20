@@ -55,6 +55,16 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
 product_update_view = ProductUpdateAPIView.as_view()
 
 # Delete View
+class ProductDestroyAPIView(generics.DestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    lookup_field = 'pk'
+
+    def perform_destroy(self, instance):
+        # instance 
+        super().perform_destroy(instance)
+
+product_destroy_view = ProductDestroyAPIView.as_view()
 
 
 @api_view(['GET', 'POST'])
