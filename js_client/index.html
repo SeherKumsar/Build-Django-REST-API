@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.23.3/dist/algoliasearch-lite.umd.js" integrity="sha256-1QNshz86RqXe/qsCBldsUu13eAX6n/O98uubKQs87UI=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.68.1/dist/instantsearch.production.min.js" integrity="sha256-AEialBwCKmHcqym8j00nCLu/FDy3530TKG9n6okJobM=" crossorigin="anonymous"></script>
+    </head>
     <body>
         <form id="login-form" method="POST">
             <input type="text" name="username" placeholder="Your Username" />
             <input type="password" name="password", placeholder="Your Password">
             <input type="submit" value="Login" />
         </form>
+
+        <form style='display:none' id="search-form" method="GET">
 
         <form id="search-form" method="GET">
             <input type="text" name="q" placeholder="Your search" />
@@ -14,7 +20,19 @@
 
         <div id="content-container"></div>
 
-        <script src="./client.js"></script>
+        <div id="searchbox"></div>
+        <div id="clear-refinements"></div>
+        <div id="user-list"></div>
+        <div><h3>Public</h3>
+            <div id="public-list"></div>
+        </div>
 
+        <div id="hits"></div>
+
+        <script src="./client.js"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.23.3/dist/algoliasearch-lite.umd.js" integrity="sha256-1QNshz86RqXe/qsCBldsUu13eAX6n/O98uubKQs87UI=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.68.1/dist/instantsearch.production.min.js" integrity="sha256-AEialBwCKmHcqym8j00nCLu/FDy3530TKG9n6okJobM=" crossorigin="anonymous"></script>
+        
     </body>
 </html>

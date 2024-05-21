@@ -14,7 +14,6 @@ if (searchForm) {
 }
 
 function handleLogin(event) {
-    console.log(event)
     event.preventDefault()
     const loginEndpoint = `${baseEndpoint}/token/`
     let loginFormData = new FormData(loginForm)
@@ -71,6 +70,7 @@ function handleSearch(event) {
         return response.json()
     })
     .then(data => {
+        // A list of products title
         const validData = isTokenNotValid(data)
         if (validData && contentContainer){
             contentContainer.innerHTML = ""
@@ -174,3 +174,49 @@ function getProductList(){
 
 validateJWTToken()
 // getProductList()
+
+// const searchClient = algoliasearch(process.env['ALGOLIA_APP_ID'], process.env['ALGOLIA_API_KEY'])
+const searchClient = algoliasearch('9WXNIA4FB1', '521e5c5e85d5cc06d4d1cd0b1ceb154a')
+
+const search = instantsearch({
+  indexName: 'cfe_Product',
+  searchClient,
+});
+
+search.addWidgets([
+  instantsearch.widgets.searchBox({
+    container: '#searchbox',
+  }),
+
+    instantsearch.widgets.clearRefinements({
+    container: "#clear-refinements"
+    }),
+
+
+  instantsearch.widgets.refinementList({
+      container: "#user-list",
+      attribute: 'user'
+  }),
+  instantsearch.widgets.refinementList({
+    container: "#public-list",
+    attribute: 'public'
+}),
+
+
+  instantsearch.widgets.hits({
+    container: '#hits',
+    templates: {
+        item: `
+            <div>
+                <div>{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</div>
+                <div>{{#helpers.highlight}}{ "attribute": "body" }{{/helpers.highlight}}</div>
+                
+                <p>{{ user }}</p><p>\${{ price }}
+            
+            
+            </div>`
+    }
+  })
+]);
+
+search.start();
