@@ -1,8 +1,11 @@
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
+import random
 
 User = settings.AUTH_USER_MODEL # auth.User
+
+TAGS_MODEL_VALUES = ['electronics', 'cars', 'boats', 'movies', 'cameras']
 
 class ProductQuerySet(models.QuerySet):
     def is_public(self):
@@ -31,7 +34,17 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=15, decimal_places=2, default=99.99)
     
     public = models.BooleanField(default=True)
+    # publish_timestmap = models.DateTimeField()
+
     objects = ProductManager()
+
+    def is_public(self) -> bool:
+        # if now > self.publish_timestmap>
+        #     true
+        return self.public # True or False
+
+    def get_tags_list(self):
+        return [random.choice(TAGS_MODEL_VALUES)]
 
     @property
     def sale_price(self):

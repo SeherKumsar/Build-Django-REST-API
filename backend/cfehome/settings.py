@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,8 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # thied party api services
+    'algoliasearch_django',
+
+    # third party packages
     'rest_framework',
     'rest_framework.authtoken',
+
+    # internal apps
     'api',
     'products',
     'search',
@@ -140,4 +149,14 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10
+}
+
+# .env loaded
+load_dotenv()
+
+# environment variables -> django-dotenv -> reads .env
+ALGOLIA = {
+    'APPLICATION_ID': os.getenv('ALGOLIA_APP_ID'),
+    'API_KEY': os.getenv('ALGOLIA_API_KEY'),
+    'INDEX_PREFIX': 'cfe'
 }
