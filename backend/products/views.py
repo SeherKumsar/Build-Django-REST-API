@@ -23,7 +23,6 @@ class ProductListCreateAPIView(
     # user_field = 'owner'
     # allow_staff_view = False
 
-
     # authentication_classes = [authentication.SessionAuthentication]
     # authentication_classes = [
     #     authentication.SessionAuthentication,

@@ -7,6 +7,7 @@ User = settings.AUTH_USER_MODEL # auth.User
 class Product(models.Model):
     # pk
     # owner = models.ForeignKey(User)
+    
     user = models.ForeignKey(User, default=1, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=120)
     content = models.TextField(blank=True, null=True)

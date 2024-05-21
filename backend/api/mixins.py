@@ -14,7 +14,6 @@ class UserQuerySetMixin():
         lookup_data = {}
         lookup_data[self.user_field] = user
         # print(lookup_data)
-
         # lookup_data = {'owner': self.request.user}
         qs = super().get_queryset(*args, **kwargs)
         # print(qs)
