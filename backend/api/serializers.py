@@ -27,9 +27,6 @@ class UserPublicSerializer(serializers.Serializer):
     #     ]
 
     # def get_other_products(self, obj):
-    #     request = self.context.get('request')
     #     user = obj
-    #     print(user)
     #     my_products_qs = user.product_set.all()[:5]
-    #     # return []
     #     return UserProductInlineSerializer(my_products_qs, many=True, context=self.context).data

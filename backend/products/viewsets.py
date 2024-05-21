@@ -27,7 +27,6 @@ class ProductGenericViewSet(
     '''
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    # http://localhost:8000/api/v2/products/
     lookup_field = 'pk' # default
 
 # product_list_view = ProductGenericViewSet.as_view({'get': 'list'})
