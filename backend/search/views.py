@@ -12,14 +12,11 @@ class SearchListView(generics.GenericAPIView):
         if request.user.is_authenticated:
             user = request.user.username
         query = request.GET.get('q')
-        # results = client.perform_search(query)
-        # return Response(results)
         public = str(request.GET.get('public')) != "0"
         tag = request.GET.get('tag') or None
         if not query:
             return Response('', status=400)
         results = client.perform_search(query, tags=tag, user=user, public=public)
-        # >>> perform_search("hello", tags=['movies'], public=False, user='staff')
         return Response(results)
 
 class SearchListOldView(generics.ListAPIView):

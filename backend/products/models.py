@@ -1,7 +1,7 @@
+import random
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
-import random
 
 User = settings.AUTH_USER_MODEL # auth.User
 
@@ -25,22 +25,33 @@ class ProductManager(models.Manager):
 
     def search(self, query, user=None):
         return self.get_queryset().search(query, user=user)
-    
+
 class Product(models.Model):
     # pk
     user = models.ForeignKey(User, default=1, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=120)
     content = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=15, decimal_places=2, default=99.99)
-    
     public = models.BooleanField(default=True)
-    # publish_timestmap = models.DateTimeField()
 
     objects = ProductManager()
 
+    def get_absolute_url(self):
+        return f"/api/products/{self.pk}/"
+
+    @property
+    def endpoint(self):
+        return self.get_absolute_url()
+
+    @property
+    def path(self):
+        return f"/products/{self.pk}/"
+
+    @property
+    def body(self):
+        return self.content
+
     def is_public(self) -> bool:
-        # if now > self.publish_timestmap>
-        #     true
         return self.public # True or False
 
     def get_tags_list(self):

@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
 import os
 from dotenv import load_dotenv
 from pathlib import Path
@@ -39,16 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # thied party api services
+    # third party api services
     'algoliasearch_django',
-
     # third party packages
     'rest_framework',
     'rest_framework.authtoken',
 
     # internal apps
     'api',
+    'articles',
     'products',
     'search',
 ]
